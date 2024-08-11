@@ -2,6 +2,7 @@ import express  from "express";
 import { Socket } from "socket.io";
 import http from "http"
 import {Server} from "socket.io";
+import path from "path"
 
 const port = 3000;
 const app = express();
@@ -14,7 +15,8 @@ const io = new Server (server, {
     }
 })
 
-
+app.set("view engine","ejs");
+app.use(express.static(path.join(__dirname,"public")))
 
 app.get("/",(req, res) => {
     res.send("hey");
